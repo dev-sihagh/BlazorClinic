@@ -1,0 +1,32 @@
+﻿<div class="container-fluid">
+    <div class="row clinic-footer">
+        <div class="col-md-3">
+            <div class="py-1 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3 text-center">
+                Date:  @today
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="py-1 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3 text-center">
+                Clinic Name: Alberta
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="py-1 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3 text-center">
+                User Name: Sarah
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="py-1 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3 text-center">
+                Version: 0.0.3
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+@code {
+   
+    public string today { get; set; } = DateTime.Now.ToString("yyyy-M-d dddd");
+}

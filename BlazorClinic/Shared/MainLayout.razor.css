@@ -1,0 +1,30 @@
+* {
+    box-sizing: border-box !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+.main-page{
+    height:100vh;
+    width:auto;
+}
+.main-sidebar{
+    height:94vh;
+}
+.main-sidebar-origin {
+    height: 94vh;
+}
+.main-sidebar-space {
+    height: 94vh;
+}
+.main-body {
+    height: 94vh;
+}
+.main-body-search {
+    height: 28vh;
+}
+.main-body-patient-list {
+    height: 66vh;
+}
+.main-page-footer {
+    height: 6vh;
+}
