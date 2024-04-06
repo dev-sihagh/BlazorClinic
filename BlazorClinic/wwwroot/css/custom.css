@@ -1,15 +1,14 @@
 ﻿
 
-
-
-
-/*body {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-}*/
-.main-sidebar {
-  height:94vh;
+* {
+    box-sizing: border-box !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+.main-left-sidebar {
+    height: 94vh;
+    
+    background-color: rgb(14, 34, 56);
 }
 /*.clinic-footer {
     bottom: 0;
@@ -20,7 +19,14 @@
     transition:all .4s;
 }
 .nav-main > li > a:hover {
-    background-color: #0d6efd;
+        background-color: #0d6efd;
+}
+.main-body-search {
+    height: 28vh;
+}
+
+.main-body-patient-list {
+    height: 66vh;
 }
 /*.search-box{
     height:20vh;
@@ -28,3 +34,30 @@
     border:solid 1px black;
 }*/
 
+
+
+.main-page {
+    height: 100vh;
+    width: auto;
+}
+
+.main-sidebar {
+    height: 94vh;
+}
+
+.main-sidebar-origin {
+    height: 94vh;
+}
+
+
+.main-sidebar-space {
+    height: 94vh;
+}
+
+.main-body {
+    height: 94vh;
+}
+
+.main-page-footer {
+    height: 6vh;
+}

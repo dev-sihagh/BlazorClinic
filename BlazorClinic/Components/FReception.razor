@@ -1,0 +1,76 @@
+﻿@page "/freception/"
+<EditForm Model="@ObjReception" OnValidSubmit="HandleUpsertNews">
+    <div class="container-fluid main-page">
+        <div class="row">
+            <div class="row col-md-3 col-xs-12 main-sidebar">
+                <div class="col-md-12 main-sidebar-origin" style="background-color:red">
+                    <NavMenu></NavMenu>
+                </div>
+
+            </div>
+
+            <div class="col-md-9 main-body" style="background-color:cornflowerblue; height:94vh;">
+
+                <div class="row">
+
+                    <div class="form-group">
+                        <label>FirstName</label>
+                        <InputText class="form-control" @bind-Value="@FirstName" placeholder="FirstName" />
+                    </div>
+                    <div class="form-group">
+                        <label>LastName</label>
+                        <InputText class="form-control" @bind-Value="@LastName" placeholder="LastName" />
+                    </div>
+                    <div class="form-group">
+                        <label>Age</label>
+                        <InputText class="form-control" @bind-Value="@Age" placeholder="Age" />
+                    </div>
+                    <div class="form-group">
+                        <label>BeneficiaryCode</label>
+                        <InputText class="form-control" @bind-Value="@BeneficiaryCode" placeholder="BeneficiaryCode" />
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+
+                </div>
+
+
+            </div>
+        </div>
+        <div class="row main-page-footer bg-primary-subtle">
+
+            <ClinicFooter></ClinicFooter>
+
+        </div>
+
+
+    </div>
+
+    @* <div class="form-group">
+        <label for="exampleInputEmail1">Email address</label>
+        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPassword1">Password</label>
+        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+    </div>
+    <div class="form-group form-check">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button> *@
+</EditForm>
+
+@code {
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
+    public string Age { get; set; }
+    public string BeneficiaryCode { get; set; }
+    ClinicBusiness.ReceptionBusiness ObjReception = new ClinicBusiness.ReceptionBusiness();
+    private void HandleUpsertNews()
+    {
+         ObjReception.InsertReception(FirstName, LastName, int.Parse(Age), BeneficiaryCode);
+        
+    }
+
+}
