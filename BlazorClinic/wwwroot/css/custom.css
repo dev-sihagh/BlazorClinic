@@ -1,44 +1,13 @@
 ﻿
 
 * {
-    box-sizing: border-box !important;
-    margin: 0 !important;
-    padding: 0 !important;
+    box-sizing: border-box ;
+    margin: 0 ;
+    padding: 0 ;
 }
-.main-left-sidebar {
-    height: 94vh;
-    
-    background-color: rgb(14, 34, 56);
-}
-/*.clinic-footer {
-    bottom: 0;
-    height: 5vh;
-    width: 100.8vw;
-}*/
-.nav-main > li > a {
-    transition:all .4s;
-}
-.nav-main > li > a:hover {
-        background-color: #0d6efd;
-}
-.main-body-search {
-    height: 28vh;
-}
-
-.main-body-patient-list {
-    height: 66vh;
-}
-/*.search-box{
-    height:20vh;
-    width:100%;
-    border:solid 1px black;
-}*/
-
-
-
 .main-page {
     height: 100vh;
-    width: auto;
+    width: 105vw;
 }
 
 .main-sidebar {
@@ -50,14 +19,55 @@
 }
 
 
-.main-sidebar-space {
-    height: 94vh;
+.nav-main > li > a {
+    transition:all .4s;
 }
-
+.nav-main > li > a:hover {
+        background-color: #0d6efd;
+}
 .main-body {
     height: 94vh;
 }
+.main-body-search {
+    height: 28vh;
+}
 
+.main-body-patient-list {
+    height: 66vh;
+}
 .main-page-footer {
     height: 6vh;
+}
+/*.search-box{
+    height:20vh;
+    width:100%;
+    border:solid 1px black;
+}*/
+
+.main-left-sidebar {
+    height: 94vh;
+    background-color: rgb(14, 34, 56);
+}
+
+
+
+
+
+
+
+.input-reception{
+    height:7vh;
+    /*margin:1rem 0 1rem 0;*/
+    margin-top:1vh;
+    margin-left :1vh;
+    margin-right:3vh
+}
+.reception-label{
+    width:14vw
+}
+
+.bt-submit {
+    width: 19vw !important;
+    height: 6vh !important;
+    margin-top: 3vh !important;
 }

@@ -2,38 +2,65 @@
 <EditForm Model="@ObjReception" OnValidSubmit="HandleUpsertNews">
     <div class="container-fluid main-page">
         <div class="row">
-            <div class="row col-md-3 col-xs-12 main-sidebar">
-                <div class="col-md-12 main-sidebar-origin" style="background-color:red">
+            <div class="row col-md-2 col-xs-12 main-sidebar p-0 m-0">
+                <div class="col-md-12 main-sidebar-origin p-0 m-0" style="background-color:red">
                     <NavMenu></NavMenu>
                 </div>
 
             </div>
 
-            <div class="col-md-9 main-body" style="background-color:cornflowerblue; height:94vh;">
-
+            <div class="col-md-10 main-body" style="background-color:cornflowerblue; height:94vh;">
                 <div class="row">
-
-                    <div class="form-group">
-                        <label>FirstName</label>
-                        <InputText class="form-control" @bind-Value="@FirstName" placeholder="FirstName" />
+                    <div class="col-md-6">
+                        <div class="form-group">
+                        <div class=" d-flex input-reception">
+                            <label class="reception-label">FirstName</label>
+                            <InputText class="form-control reception-input-class" @bind-Value="@FirstName" />
+                        </div>
+                        <div class=" d-flex input-reception">
+                            <label class="reception-label">LastName</label>
+                            <InputText class="form-control reception-input-class" @bind-Value="@LastName" />
+                        </div>
+                        <div class=" d-flex input-reception">
+                            <label class="reception-label">Age</label>
+                            <InputText class="form-control reception-input-class" @bind-Value="@Age" />
+                        </div>
+                        <div class=" d-flex input-reception">
+                            <label class="reception-label">BeneficiaryCode</label>
+                            <InputText class="form-control reception-input-class" @bind-Value="@BeneficiaryCode" />
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label>LastName</label>
-                        <InputText class="form-control" @bind-Value="@LastName" placeholder="LastName" />
                     </div>
-                    <div class="form-group">
-                        <label>Age</label>
-                        <InputText class="form-control" @bind-Value="@Age" placeholder="Age" />
+                    <div class="col-md-6">
+                        <div class="form-group d-flex input-reception">
+                            <label class="reception-label">Sex</label>
+                            @* <InputText class="form-control reception-input-class" @bind-Value="@FirstName" /> *@
+                            <select class="form-select" aria-label="Default select example" >
+                                <option selected>Open this select menu</option>
+                                <option value="1">Male</option>
+                                <option value="2">Female</option>
+                            </select>
+                        </div>
+                        <div class="form-group d-flex input-reception">
+                            <label class="reception-label">Mobile</label>
+                            <InputText class="form-control reception-input-class" @bind-Value="@FirstName" />
+                        </div>
+                        <div class="form-group d-flex input-reception">
+                            <label class="reception-label">ReceptionID</label>
+                            <InputText class="form-control reception-input-class" @bind-Value="@FirstName" />
+                        </div>
+                        <div class="form-group d-flex input-reception">
+                            <label class="reception-label">DocumentCode</label>
+                            <InputText class="form-control reception-input-class" @bind-Value="@FirstName" />
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label>BeneficiaryCode</label>
-                        <InputText class="form-control" @bind-Value="@BeneficiaryCode" placeholder="BeneficiaryCode" />
-                    </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+                <div class="row d-flex justify-content-center  align-items-center">
+                    <button type="submit" class="btn btn-primary bt-submit">Submit</button>
+                </div>
+                <div>
 
                 </div>
-
-
             </div>
         </div>
         <div class="row main-page-footer bg-primary-subtle">
