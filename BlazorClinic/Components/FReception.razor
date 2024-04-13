@@ -1,12 +1,12 @@
 ﻿@page "/freception/"
-<EditForm Model="@ObjReception" OnValidSubmit="HandleUpsertNews">
+@using System.Data
+<EditForm Model="@ObjReception" OnSubmit="HandleUpsertNews">
     <div class="container-fluid main-page">
         <div class="row">
             <div class="row col-md-2 col-xs-12 main-sidebar p-0 m-0">
                 <div class="col-md-12 main-sidebar-origin p-0 m-0" style="background-color:red">
                     <NavMenu></NavMenu>
                 </div>
-
             </div>
 
             <div class="col-md-10 main-body" style="background-color:cornflowerblue; height:94vh;">
@@ -15,11 +15,13 @@
                         <div class="form-group">
                         <div class=" d-flex input-reception">
                             <label class="reception-label">FirstName</label>
-                            <InputText class="form-control reception-input-class" @bind-Value="@FirstName" />
+                                <InputText class="form-control reception-input-class" @bind-Value="@FirstName" /> 
+                             
                         </div>
                         <div class=" d-flex input-reception">
                             <label class="reception-label">LastName</label>
-                            <InputText class="form-control reception-input-class" @bind-Value="@LastName" />
+                             <InputText class="form-control reception-input-class" @bind-Value="@LastName" /> 
+                           
                         </div>
                         <div class=" d-flex input-reception">
                             <label class="reception-label">Age</label>
@@ -33,30 +35,103 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-group d-flex input-reception">
-                            <label class="reception-label">Sex</label>
-                            @* <InputText class="form-control reception-input-class" @bind-Value="@FirstName" /> *@
-                            <select class="form-select" aria-label="Default select example" >
-                                <option selected>Open this select menu</option>
+                            <label class="reception-label">Gender</label>
+                          
+                            <InputSelect class="form-select" aria-label="Default select example"  @bind-Value="@Gender" >
+                                 <option selected>Choose</option>
                                 <option value="1">Male</option>
-                                <option value="2">Female</option>
-                            </select>
+                                <option value="0">Female</option>
+                            </InputSelect>
                         </div>
                         <div class="form-group d-flex input-reception">
                             <label class="reception-label">Mobile</label>
-                            <InputText class="form-control reception-input-class" @bind-Value="@FirstName" />
+                            <InputText class="form-control reception-input-class" @bind-Value="@MobileNumber" />
                         </div>
                         <div class="form-group d-flex input-reception">
-                            <label class="reception-label">ReceptionID</label>
-                            <InputText class="form-control reception-input-class" @bind-Value="@FirstName" />
+                            <label class="reception-label">ReceptionDate</label>
+                            <InputDate class="form-control reception-input-class" @bind-Value="@ReceptionDate" />
                         </div>
                         <div class="form-group d-flex input-reception">
                             <label class="reception-label">DocumentCode</label>
-                            <InputText class="form-control reception-input-class" @bind-Value="@FirstName" />
+                            <InputText class="form-control reception-input-class" @bind-Value="@DocumentCode" />
                         </div>
                     </div>
                 </div>
+                <div class="row form-group d-flex justify-content-center  align-items-center service-main">
+
+                        <label class="service-label d-inline-block">Services</label>
+                    @* <InputText class="form-control service-input d-inline-block" @bind-Value="@FirstName" /> *@
+                    
+                    <InputSelect class="form-select  service-input d-inline-block" aria-label="Default select example" @bind-Value="@ServiceID" @oninput="@HandleAddService">
+                        <option selected>Choose</option>
+                        @* @DTServices = ListfullServices(@DTServices) *@
+                        @if (@DTAllServices != null && @DTAllServices.Rows.Count > 0)
+                        {
+                            @foreach (DataRow servicerow in DTAllServices.Rows)
+                            {
+                                <option value="@servicerow["ServiceID"]">@servicerow["ServiceName"].ToString()</option>
+                            }
+                        } 
+                       @*  <option value="1">FBS</option>
+                        <option value="2">CBC</option> *@
+
+                    </InputSelect>
+                    <label class="service-label d-inline-block">Quantity</label>
+                    <InputText type="text" class="form-control  service-input d-inline-block" @bind-Value="@Quantity" />
+                </div>
+                <div class="row">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                 <th scope="col">ServiceId</th> 
+                                <th scope="col">ServiceName</th>
+                                <th scope="col">Quantity</th>
+                                <th scope="col">Beneficiary</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                            @if (@DTPatientServices != null && @DTPatientServices.Rows.Count > 0)
+                            {
+                                var i = 1;
+                                @foreach (DataRow servicerow in DTPatientServices.Rows)
+                                {
+                                    <tr>
+                                        <th scope="row">@i</th>
+                                        <td>@servicerow["ServiceID"].ToString()</td>
+                                        <td>@servicerow["ServiceName"].ToString()</td>
+                                        @* <td>@Quantity</td> *@
+                                        <td>@servicerow["ServiceCount"].ToString()</td>
+                                        <td>@servicerow["BeneficiaryName"].ToString()</td>
+                                        @* <td>@BeneficiaryCode</td> *@
+                                    </tr>
+                                    i = i + 1;
+                                }
+                               
+                            }
+
+                           @*  <tr>
+                                <th scope="row">2</th>
+                                <td>Jacob</td>
+                                <td>Thornton</td>
+                                <td>fat</td>
+                                <td>Beneficiary</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">3</th>
+                                <td>Larry the Bird</td>
+                                <td>Instagram</td>
+                                <td>twitter</td>
+                                <td>Beneficiary</td>
+                            </tr> *@
+                        </tbody>
+                    </table>
+                </div>
                 <div class="row d-flex justify-content-center  align-items-center">
+
                     <button type="submit" class="btn btn-primary bt-submit">Submit</button>
+                    @* <button type="submit" class="btn btn-success">@Title خبر</button> *@
                 </div>
                 <div>
 
@@ -92,12 +167,77 @@
     public string FirstName { get; set; }
     public string LastName { get; set; }
     public string Age { get; set; }
+
+
+    public int ServiceID { get; set; }
+    // public string Quantity { get; set; }
+    // string BeneficiaryCode = "";
+    // string Quantity = "";
     public string BeneficiaryCode { get; set; }
+
+    public string Quantity { get; set; }
+    public bool Gender { get; set; }
+    public string MobileNumber { get; set; }
+    public string DocumentCode { get; set; }
+    public DateTime ReceptionDate { get; set; } = DateTime.Now;
+    // public DataTable DTServices { get; set; }
+    DataTable DTAllServices = new DataTable();
+    DataTable DTPatientServices = new DataTable();
     ClinicBusiness.ReceptionBusiness ObjReception = new ClinicBusiness.ReceptionBusiness();
+    ClinicBusiness.ReceptionServiceBusiness ObjReceptionService = new ClinicBusiness.ReceptionServiceBusiness();
+
     private void HandleUpsertNews()
     {
-         ObjReception.InsertReception(FirstName, LastName, int.Parse(Age), BeneficiaryCode);
-        
+
+        ObjReception.InsertReception(FirstName, LastName, int.Parse(Age), BeneficiaryCode, MobileNumber, ReceptionDate, Gender, DocumentCode);
+        DataRow row = ObjReception.FindLastReceptionId();
+        foreach (DataRow rw in DTPatientServices.Rows)
+        {
+            rw["ReceptionId"] = row["ReceptionId"];
+        }
+        ObjReceptionService.UpdateReceptionServiceTable(DTPatientServices);
+
     }
+
+    protected override void OnInitialized()
+    {
+        DTAllServices = ObjReception.ListfullServices();
+
+    }
+    private async Task HandleAddService(ChangeEventArgs e)
+    {
+     
+        if (DTPatientServices != null && DTPatientServices.Rows.Count > 0)
+        {
+            //do nothing
+        }
+        else
+        {
+            DTPatientServices = ObjReception.GetSchemaReceptionServiceCS();
+        }
+      
+        DataRow rw;
+        int serid = Convert.ToInt32(e.Value);
+        DataRow foundRow = ObjReception.FindServiceById(serid);
+
+        rw = DTPatientServices.NewRow();
+
+        rw["ServiceName"] = foundRow["ServiceName"];
+        rw["ServiceId"] = foundRow["ServiceId"];
+        rw["ServiceCount"] = Quantity;
+        rw["BeneficiaryName"] = BeneficiaryCode;
+        DTPatientServices.Rows.Add(rw);
+     
+
+
+    }
+    private void HandleInput(ChangeEventArgs e)
+    {
+        LastName = e.Value.ToString();
+        // Optionally update the component state only under certain conditions
+    }
+
+   
+
 
 }

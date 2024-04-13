@@ -56,18 +56,31 @@
 
 
 .input-reception{
-    height:7vh;
+    height:6vh;
     /*margin:1rem 0 1rem 0;*/
-    margin-top:1vh;
+    margin-top:.5vh;
     margin-left :1vh;
     margin-right:3vh
 }
 .reception-label{
-    width:14vw
+    width:14vw;
+    font-weight:600;
 }
 
 .bt-submit {
     width: 19vw !important;
     height: 6vh !important;
     margin-top: 3vh !important;
+
+}
+.service-label {
+    width: 10% !important;
+    font-weight: 600;
+}
+.service-input {
+    width: 30% !important;
+}
+.service-main {
+    margin-top: .5vh !important;
+    margin-bottom: .5vh !important;
 }
