@@ -34,12 +34,48 @@ namespace ClinicData
             return dt.Rows[0];
         }
 
+
         public DataTable ListfullServices()
         {
             con.Open();
             SqlCommand cmd = con.CreateCommand();
             cmd.CommandType = CommandType.Text;
             cmd.CommandText = "Select * From BaseService";
+            cmd.ExecuteNonQuery();
+            DataTable dt = new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            da.Fill(dt);
+            con.Close();
+            return dt;
+        }
+        public DataTable ListfullPatient(string firstname, string lastname,string beneficiarycode,bool gender,DateTime ReceptionDate,string documentcode   )
+        {
+            con.Open();
+            SqlCommand cmd = con.CreateCommand();
+            cmd.CommandType = CommandType.Text;
+            string WhereStr = "";
+            if (firstname != ""){
+                WhereStr = WhereStr + "FirstName=" + firstname.ToString();
+            }
+            if (lastname != "")
+            {
+                WhereStr = WhereStr + "LastName=" + lastname.ToString();
+            }
+            if (beneficiarycode != "")
+            {
+                WhereStr = WhereStr + "BeneficiaryCode=" + beneficiarycode.ToString();
+            }
+            if (documentcode != "")
+            {
+                WhereStr = WhereStr + "DocumentCode=" + documentcode.ToString();
+            }
+
+            //if (ReceptionDate != "")
+            //{
+            //    WhereStr = WhereStr + "FirstName=" + ReceptionDate.ToString();
+            //}
+
+            cmd.CommandText = "Select * From ReceptionCS "+ WhereStr.ToString();
             cmd.ExecuteNonQuery();
             DataTable dt = new DataTable();
             SqlDataAdapter da = new SqlDataAdapter(cmd);

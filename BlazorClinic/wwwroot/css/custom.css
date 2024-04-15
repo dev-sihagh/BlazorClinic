@@ -26,7 +26,8 @@
         background-color: #0d6efd;
 }
 .main-body {
-    height: 94vh;
+    height: 94vh !important;
+    background-color: cornflowerblue;
 }
 .main-body-search {
     height: 28vh;

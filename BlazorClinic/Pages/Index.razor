@@ -1,4 +1,5 @@
 ﻿@page "/"
+
   <div class="container-fluid main-page">
     <div class="row">
         <div class="row col-md-2 col-xs-12 main-sidebar m-0 p-0" >
@@ -8,8 +9,51 @@
         
         </div>
 
-        <div class="col-md-10 main-body" style="background-color:cornflowerblue; height:94vh;">
-            <div class="row main-body-search" style="background-color:coral;">
+        <div class="col-md-10 main-body" >
+            <div class="row main-body-search" style="background-color:cornflowerblue;">
+                <EditForm Model="@ObjReception" OnSubmit="HandleSearch">
+                    <div class="col-md-10" >
+                         <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class=" d-flex input-reception">
+                                        <label class="reception-label">FirstName</label>
+                                        <InputText class="form-control reception-input-class" @bind-Value="@FirstName" />
+                                    </div>
+                                    <div class=" d-flex input-reception">
+                                        <label class="reception-label">LastName</label>
+                                        <InputText class="form-control reception-input-class" @bind-Value="@LastName" />
+
+                                    </div>
+                                    <div class="d-flex input-reception">
+                                        <label class="reception-label">BeneficiaryCode</label>
+                                        <InputText class="form-control reception-input-class" @bind-Value="@BeneficiaryCode" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group d-flex input-reception">
+                                    <label class="reception-label">Gender</label>
+
+                                    <InputSelect class="form-select" aria-label="Default select example" @bind-Value="@Gender">
+                                        <option selected>Choose</option>
+                                        <option value="1">Male</option>
+                                        <option value="0">Female</option>
+                                    </InputSelect>
+                                </div>
+                                <div class="form-group d-flex input-reception">
+                                    <label class="reception-label">ReceptionDate</label>
+                                    <InputDate class="form-control reception-input-class" @bind-Value="@ReceptionDate" />
+                                </div>
+                                <div class="form-group d-flex input-reception">
+                                    <label class="reception-label">DocumentCode</label>
+                                    <InputText class="form-control reception-input-class" @bind-Value="@DocumentCode" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </EditForm>
 
             </div>
             <div class="row main-body-patient-list" style="background-color:green;">
@@ -18,13 +62,42 @@
         </div>
     </div>
     <div class="row main-page-footer bg-primary-subtle" style="background-color:yellow;">
-
        <ClinicFooter></ClinicFooter>
 
     </div>
 
 
 </div> 
+
+@code {
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
+    public string Age { get; set; }
+    public int ServiceID { get; set; }
+    public string BeneficiaryCode { get; set; }
+    public string Quantity { get; set; }
+    public bool Gender { get; set; }
+    public string MobileNumber { get; set; }
+    public string DocumentCode { get; set; }
+    // public DateOnly ReceptionDate { get; set; } = DateOnly.FromDateTime(DateTime.Now);
+    public DateTime ReceptionDate { get; set; } = DateTime.Now;
+    DataTable DTPatient = new DataTable();
+    ClinicBusiness.ReceptionBusiness ObjReception = new ClinicBusiness.ReceptionBusiness();
+    protected override void OnInitialized()
+    {
+        DTPatient = ObjReception.ListfullServices();
+
+    }
+    private void HandleSearch()
+    {
+
+        
+        // JsRuntime.InvokeVoidAsync("ShowSwal", "success", "عملیات مورد نظر با موفقیت انجام شد");
+
+
+    }
+
+}
  
 
 

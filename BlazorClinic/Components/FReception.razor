@@ -1,15 +1,15 @@
 ﻿@page "/freception/"
-@using System.Data
+
 <EditForm Model="@ObjReception" OnSubmit="HandleUpsertNews">
     <div class="container-fluid main-page">
         <div class="row">
             <div class="row col-md-2 col-xs-12 main-sidebar p-0 m-0">
-                <div class="col-md-12 main-sidebar-origin p-0 m-0" style="background-color:red">
+                <div class="col-md-12 main-sidebar-origin p-0 m-0" >
                     <NavMenu></NavMenu>
                 </div>
             </div>
 
-            <div class="col-md-10 main-body" style="background-color:cornflowerblue; height:94vh;">
+            <div class="col-md-10 main-body" >
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
@@ -88,6 +88,7 @@
                                 <th scope="col">ServiceName</th>
                                 <th scope="col">Quantity</th>
                                 <th scope="col">Beneficiary</th>
+                                <th scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -102,7 +103,10 @@
                                         <td>@servicerow["ServiceID"].ToString()</td>
                                         <td>@servicerow["ServiceName"].ToString()</td>
                                         @* <td>@Quantity</td> *@
-                                        <td>@servicerow["ServiceCount"].ToString()</td>
+                                        <td>
+                                            @servicerow["ServiceCount"].ToString()
+                                             @* <input type="text" class="form-control" value="@servicerow["ServiceCount"].ToString()"> *@
+                                        </td>
                                         <td>@servicerow["BeneficiaryName"].ToString()</td>
                                         @* <td>@BeneficiaryCode</td> *@
                                     </tr>
@@ -167,20 +171,13 @@
     public string FirstName { get; set; }
     public string LastName { get; set; }
     public string Age { get; set; }
-
-
     public int ServiceID { get; set; }
-    // public string Quantity { get; set; }
-    // string BeneficiaryCode = "";
-    // string Quantity = "";
     public string BeneficiaryCode { get; set; }
-
     public string Quantity { get; set; }
     public bool Gender { get; set; }
     public string MobileNumber { get; set; }
     public string DocumentCode { get; set; }
     public DateTime ReceptionDate { get; set; } = DateTime.Now;
-    // public DataTable DTServices { get; set; }
     DataTable DTAllServices = new DataTable();
     DataTable DTPatientServices = new DataTable();
     ClinicBusiness.ReceptionBusiness ObjReception = new ClinicBusiness.ReceptionBusiness();
@@ -197,7 +194,14 @@
         }
         ObjReceptionService.UpdateReceptionServiceTable(DTPatientServices);
 
+        JsRuntime.InvokeVoidAsync("ShowSwal", "success", "عملیات مورد نظر با موفقیت انجام شد");
+      
+
     }
+    // private async Task SwalSuccess()
+    // {
+    //     await JsRuntime.InvokeVoidAsync("ShowSwal", "success", "عملیات مورد نظر با موفقیت انجام شد");
+    // }
 
     protected override void OnInitialized()
     {
