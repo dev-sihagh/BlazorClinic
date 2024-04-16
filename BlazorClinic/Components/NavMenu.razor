@@ -10,28 +10,26 @@
             <ul class="nav nav-pills flex-column my-1 nav-main">
                 
                 <li>
-                    <a href="/freception" class="nav-link text-white fa-2x my-1 ps-3 d-flex align-content-lg-center">
+                    <a href="/freception" class=@($"{IsActive("1")}") @onclick="@(() => SetActive("1"))">
                         <i class="fas fa-user-nurse me-1 fa-2x  pe-2 my-1"></i>
-                   
                         <span class="">Reception</span>
-                       
                     </a>
                 </li>
                 <li class="">
-                    <a href="#" class="nav-link text-white fa-2x my-1 ps-3 d-flex align-content-lg-center active">
+                    <a href="#" class=@($" {IsActive("2")}") @onclick="@(() => SetActive("2"))">
                         <i class="fas fa-search me-1 fa-2x  pe-2 my-1"></i>
                         
                         <span class="">Search</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="nav-link text-white fa-2x my-1 ps-3 d-flex align-content-lg-centere">
+                    <a href="/test" class=@($" {IsActive("3")}") @onclick="@(() => SetActive("3"))">
                         <i class="fa-solid fa-calendar-days me-1 fa-2x  pe-2 my-1"></i>
                         <span class="">Reservation</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="nav-link text-white fa-2x my-1 ps-3 d-flex align-content-lg-center">
+                    <a href="#" class=@($" {IsActive("4")}") @onclick="@(() => SetActive("4"))">
                         <i class="fa-solid fa-stethoscope me-1 fa-2x  pe-2 my-1"></i>
                         <span class="">Medicines</span>
                         
@@ -39,14 +37,14 @@
 
                 </li>
                 <li>
-                    <a href="#" class="nav-link text-white fa-2x my-1 ps-3 d-flex align-content-lg-center">
+                    <a href="#" class=@($" {IsActive("5")}") @onclick="@(() => SetActive("5"))">
                         <i class="far fa-file me-1 fa-2x  pe-2 my-1"></i>
                         <span class="">Reports</span>
                     </a>
                 </li>
 
                 <li>
-                    <a href="#" class="nav-link text-white fa-2x my-1 ps-3 d-flex align-content-lg-center">
+                    <a href="#" class=@($" {IsActive("6")}") @onclick="@(() => SetActive("6"))">
                         <i class="fa-solid fa-users me-1 fa-2x  pe-2 my-1"></i>
                         <span class="">Users</span>
                         
@@ -58,69 +56,18 @@
 </div>
 
 
-@* <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark main-left-sidebar d-inline-block">
 
-    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-        <i class="fa-regular fa-hospital me-2 fa-2xl"></i>
-        <span class="fs-4">Alberta Clinic</span>
-    </a>
-    <hr>
-    <ul class="nav nav-pills flex-column mb-auto nav-main">
-        <li>
-            <NavLink href="/freception" class="nav-link text-white fa-2x">
-                <i class="fas fa-user-nurse me-2 fa-2x"></i>
-                Reception
-            </NavLink>
-
-        </li>
-        <li>
-            <a href="#" class="nav-link text-white fa-2x active" aria-current="page">
-                <i class="fas fa-search me-2 fa-2x"></i>
-                Search
-            </a>
-        </li>
-        <li>
-            <a href="#" class="nav-link text-white" aria-current="page">
-                <i class="fa-solid fa-calendar-days me-2 fa-2x" aria-hidden="true"></i>
-
-                Reservation
-            </a>
-        </li>
-        <li>
-            <a href="#" class="nav-link text-white">
-                <i class="fa-solid fa-stethoscope fa-2x" aria-hidden="true"></i>
-                Medicines
-            </a>
-        </li>
-        <li>
-            <a href="#" class="nav-link text-white">
-
-                <i class="far fa-file me-2 fa-2x" aria-hidden="true"></i>
-                Reports
-            </a>
-        </li>
-        <li>
-            <a href="#" class="nav-link text-white">
-                <i class="fa-solid fa-users me-2 fa-1.9x"></i>
-                Users
-            </a>
-        </li>
-    </ul>
-    <hr>
-    <div class="dropdown">
-        <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
-            <strong>About Me</strong>
-        </a>
-        <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1" style="">
-            <li><a class="dropdown-item" href="#">New project...</a></li>
-            <li><a class="dropdown-item" href="#">Settings</a></li>
-            <li><a class="dropdown-item" href="#">Profile</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Sign out</a></li>
-        </ul>
-    </div>
-</div> *@
 @code {
+   [Parameter]
+    public string activeItem { get; set; }
+   // public string activeItem;
 
+    public void SetActive(string item)
+    {
+        activeItem = item;
+        StateHasChanged();
+    }
+
+    public string IsActive(string item) =>
+        item == activeItem ? "nav-link navLinkActive text-white fa-2x my-1 ps-3 d-flex align-content-lg-center active-blue" : "nav-link navLinkActive text-white fa-2x my-1 ps-3 d-flex align-content-lg-center";
 }

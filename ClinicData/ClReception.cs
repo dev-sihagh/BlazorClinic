@@ -12,7 +12,7 @@ namespace ClinicData
     {
         SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-HOVKQKU; Initial Catalog=BlazorProject_DB;Integrated Security=true;TrustServerCertificate=True;MultipleActiveResultSets=true;User Id=sa;Password=sina.hgh0832;");
         SqlCommand cmd;
-        public byte InsertReception(string firstname, string lastname, int age, string beneficiarycode,string mobilenumber,DateTime receptiondate,bool gender, string documentcode)
+        public byte InsertReception(string firstname, string lastname, int age, string beneficiarycode,string mobilenumber,string receptiondate,bool gender, string documentcode)
         {
             con.Open();
             cmd = new SqlCommand("insert into ReceptionCS values(N'" + firstname + "',N'" + lastname + "',N'" + age + "',N'" + beneficiarycode + "',N'" + mobilenumber + "',N'" + receptiondate + "',N'" + gender + "',N'" + documentcode + "')", con);
@@ -48,26 +48,34 @@ namespace ClinicData
             con.Close();
             return dt;
         }
-        public DataTable ListfullPatient(string firstname, string lastname,string beneficiarycode,bool gender,DateTime ReceptionDate,string documentcode   )
+        public DataTable ListfullPatient(string firstname, string lastname,string beneficiarycode,string gender,string receptiondate,string documentcode   )
         {
             con.Open();
             SqlCommand cmd = con.CreateCommand();
             cmd.CommandType = CommandType.Text;
-            string WhereStr = "";
+            string WhereStr = " where 1=1 ";
             if (firstname != ""){
-                WhereStr = WhereStr + "FirstName=" + firstname.ToString();
+                WhereStr = WhereStr + " and FirstName='" + firstname.ToString() + "'";
             }
             if (lastname != "")
             {
-                WhereStr = WhereStr + "LastName=" + lastname.ToString();
+                WhereStr = WhereStr + " and LastName='" + lastname.ToString() + "'";
             }
             if (beneficiarycode != "")
             {
-                WhereStr = WhereStr + "BeneficiaryCode=" + beneficiarycode.ToString();
+                WhereStr = WhereStr + " and BeneficiaryCode='" + beneficiarycode.ToString() + "'";
             }
             if (documentcode != "")
             {
-                WhereStr = WhereStr + "DocumentCode=" + documentcode.ToString();
+                WhereStr = WhereStr + " and DocumentCode='" + documentcode.ToString() + "'";
+            }
+            if (gender != "")
+            {
+                WhereStr = WhereStr + " and gender='" + gender.ToString() + "'";
+            }
+            if (receptiondate != "")
+            {
+                WhereStr = WhereStr + " and ReceptionDate='" + receptiondate.ToString()+"'";
             }
 
             //if (ReceptionDate != "")

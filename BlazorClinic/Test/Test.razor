@@ -1,1 +1,21 @@
-﻿
+﻿@page "/test"
+<div>
+    <button class=@($"btn {IsActive("1")}") @onclick="@(() => SetActive("1"))">1</button>
+    <button class=@($"btn {IsActive("2")}") @onclick="@(() => SetActive("2"))">2</button>
+    <button class=@($"btn {IsActive("3")}") @onclick="@(() => SetActive("3"))">3</button>
+    <button class=@($"btn {IsActive("4")}") @onclick="@(() => SetActive("4"))">4</button>
+    <button class=@($"btn {IsActive("5")}") @onclick="@(() => SetActive("5"))">5</button>
+</div>
+
+@code {
+    public string activeItem = "1";
+
+    public void SetActive(string item)
+    {
+        activeItem = item;
+        StateHasChanged();
+    }
+
+    public string IsActive(string item) =>
+        item == activeItem ? " active" : "";
+}

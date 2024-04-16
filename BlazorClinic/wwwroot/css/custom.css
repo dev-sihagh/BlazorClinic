@@ -17,13 +17,15 @@
 .main-sidebar-origin {
     height: 94vh;
 }
-
+.active-blue {
+    background-color: #0d6efd!important;
+}
 
 .nav-main > li > a {
     transition:all .4s;
 }
 .nav-main > li > a:hover {
-        background-color: #0d6efd;
+    background-color: #0d6efd;
 }
 .main-body {
     height: 94vh !important;
@@ -34,9 +36,12 @@
 }
 
 .main-body-patient-list {
-    height: 66vh;
+    height: 60vh;
 }
 .main-page-footer {
+    height: 6vh;
+}
+.main-page-header{
     height: 6vh;
 }
 /*.search-box{
@@ -73,6 +78,18 @@
     height: 6vh !important;
     margin-top: 3vh !important;
 
+}
+.bt-search {
+    width: 19vw !important;
+    height: 6vh !important;
+    margin-top:1vh !important;
+
+}
+.header-text {
+    width: 19vw !important;
+    height: 6vh !important;
+    margin-top: 1vh !important;
+    font-weight:800
 }
 .service-label {
     width: 10% !important;
