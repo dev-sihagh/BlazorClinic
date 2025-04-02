@@ -10,7 +10,7 @@ namespace ClinicData
 {
     public class ClReception
     {
-        SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-HOVKQKU; Initial Catalog=BlazorProject_DB;Integrated Security=true;TrustServerCertificate=True;MultipleActiveResultSets=true;User Id=sa;Password=sina.hgh0832;");
+        SqlConnection con = new SqlConnection(@"Data Source=blazorprojectdb.database.windows.net,1433;Initial Catalog=BlazorProject_DB;User ID=blazor_user_admin;Password={your_password};Encrypt=True;TrustServerCertificate=False;MultipleActiveResultSets=False;Persist Security Info=False;Connection Timeout=30;");
         SqlCommand cmd;
         public byte InsertReception(string firstname, string lastname, int age, string beneficiarycode,string mobilenumber,string receptiondate,bool gender, string documentcode)
         {
